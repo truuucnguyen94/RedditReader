@@ -12,10 +12,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  let loader = JSONLoader()
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    loader.loadPosts()
+    // TODO create the collection view and custom cell
+    // TODO create error state
+    // TODO create pagination pages
+    // TODO create open thumbnail
+    // TODO create app vc preservation
     return true
   }
 
