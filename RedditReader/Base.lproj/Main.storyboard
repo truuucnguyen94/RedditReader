@@ -1,24 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Posts View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PostsViewController" customModule="RedditReader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rHd-9L-eaX" customClass="PostsCollectionView" customModule="RedditReader" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="589"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bJX-YM-OHm">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FTg-t7-h97">
+                                <rect key="frame" x="177" y="626" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNB-6n-zV6">
+                                <rect key="frame" x="217" y="621" width="32" height="30"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="loadNextPage" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jxm-mx-K6S"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ye-Rr-OK7">
+                                <rect key="frame" x="98" y="621" width="59" height="30"/>
+                                <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="loadPreviousPage" destination="BYZ-38-t0r" eventType="touchUpInside" id="XpZ-YA-mSy"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="FTg-t7-h97" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="41E-DC-MjE"/>
+                            <constraint firstItem="FTg-t7-h97" firstAttribute="top" secondItem="rHd-9L-eaX" secondAttribute="bottom" constant="17" id="8bT-IN-lcV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FTg-t7-h97" secondAttribute="bottom" constant="21" id="CcI-qE-Rbf"/>
+                            <constraint firstItem="XNB-6n-zV6" firstAttribute="centerY" secondItem="FTg-t7-h97" secondAttribute="centerY" id="NdH-n0-jy9"/>
+                            <constraint firstItem="1ye-Rr-OK7" firstAttribute="centerY" secondItem="FTg-t7-h97" secondAttribute="centerY" id="UOp-Vt-eKf"/>
+                            <constraint firstItem="rHd-9L-eaX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Whx-uG-i22"/>
+                            <constraint firstItem="rHd-9L-eaX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XVK-gQ-5dz"/>
+                            <constraint firstItem="XNB-6n-zV6" firstAttribute="leading" secondItem="FTg-t7-h97" secondAttribute="trailing" constant="20" id="csU-iI-5HS"/>
+                            <constraint firstItem="rHd-9L-eaX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qib-yk-Rzj"/>
+                            <constraint firstItem="rHd-9L-eaX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wcA-fM-eix"/>
+                            <constraint firstItem="FTg-t7-h97" firstAttribute="leading" secondItem="1ye-Rr-OK7" secondAttribute="trailing" constant="20" id="yFT-Ws-GHU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="loadingActivityIndicator" destination="FTg-t7-h97" id="cP1-Li-7R6"/>
+                        <outlet property="nextPageButton" destination="XNB-6n-zV6" id="epN-dN-pSQ"/>
+                        <outlet property="postsCollectionView" destination="rHd-9L-eaX" id="1Hm-WO-5Rk"/>
+                        <outlet property="previousPageButton" destination="1ye-Rr-OK7" id="GBT-5L-VmC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>
