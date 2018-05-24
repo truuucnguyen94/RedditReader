@@ -21,25 +21,24 @@ class PostsCollectionView: UICollectionView {
   init() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.scrollDirection = .vertical
-    
     super.init(frame: .zero, collectionViewLayout: flowLayout)
-    
-    self.backgroundColor = .clear
-    
-    dataSource = self
-    delegate = self
-    self.register(RedditPostCell.self, forCellWithReuseIdentifier: "redditpost")
+    commonInit()
   }
   
   required init?(coder aDecoder: NSCoder) {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.scrollDirection = .vertical
     super.init(coder: aDecoder)
+    commonInit()
+  }
+
+  func commonInit() {
     self.backgroundColor = .clear
+    self.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
     dataSource = self
     delegate = self
-    self.register(RedditPostCell.self, forCellWithReuseIdentifier: "redditpost")
+    self.register(RedditPostCell.cellNib(), forCellWithReuseIdentifier: "redditpost")
   }
 }
 
@@ -59,6 +58,9 @@ extension PostsCollectionView: UICollectionViewDataSource {
   }
 }
 
-extension PostsCollectionView: UICollectionViewDelegate {
-  
+extension PostsCollectionView: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let width = frame.size.width - 10 - 10
+    return CGSize(width: width, height: 180)
+  }
 }
