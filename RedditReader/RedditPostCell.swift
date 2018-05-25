@@ -10,18 +10,20 @@ import Foundation
 import UIKit
 
 class RedditPostCell: UICollectionViewCell {
-  @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var authorLabel: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var thumbnailImageView: UIImageView! {
+  // MARK: - IBOutlet Properties
+  @IBOutlet private weak var titleLabel: UILabel!
+  @IBOutlet private weak var authorLabel: UILabel!
+  @IBOutlet private weak var dateLabel: UILabel!
+  @IBOutlet private weak var numberOfCommentsLabel: UILabel!
+  @IBOutlet private weak var thumbnailImageViewWidthConstraint: NSLayoutConstraint!
+
+  @IBOutlet private weak var thumbnailImageView: UIImageView! {
     didSet {
       thumbnailImageView.contentMode = .scaleToFill
     }
   }
-  @IBOutlet weak var numberOfCommentsLabel: UILabel!
 
-  @IBOutlet weak var thumbnailImageViewWidthConstraint: NSLayoutConstraint!
-
+  // MARK: - Internal Properties
   var post: RedditPost? {
     didSet {
       titleLabel.text = post?.title
@@ -41,6 +43,7 @@ class RedditPostCell: UICollectionViewCell {
     return UINib(nibName: "RedditPostCell", bundle: Bundle.main)
   }
 
+  // MARK: - Lifecycle methods
   override func prepareForReuse() {
     super.prepareForReuse()
     titleLabel.text = nil
@@ -50,6 +53,7 @@ class RedditPostCell: UICollectionViewCell {
     numberOfCommentsLabel.text = nil
   }
 
+  // MARK: - Private methods
   private func loadImage() {
     guard let post = post else { return }
     ImageUtility.shared.loadImage(from: post, to: thumbnailImageView)

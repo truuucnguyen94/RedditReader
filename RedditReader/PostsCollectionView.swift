@@ -56,6 +56,12 @@ extension PostsCollectionView: UICollectionViewDataSource {
     }
     return UICollectionViewCell()
   }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let selectedPost = posts[indexPath.row]
+    guard let thumbnailUrl = selectedPost.thumbnailUrl else { return }
+    UIApplication.shared.open(thumbnailUrl, options: [:], completionHandler: nil)
+  }
 }
 
 extension PostsCollectionView: UICollectionViewDelegateFlowLayout {
