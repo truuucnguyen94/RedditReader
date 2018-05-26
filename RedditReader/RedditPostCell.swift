@@ -27,7 +27,7 @@ class RedditPostCell: UICollectionViewCell {
   var post: RedditPost? {
     didSet {
       titleLabel.text = post?.title
-      authorLabel.text = post?.author
+      authorLabel.text = "By \"\(post?.author ?? "anonymous")\""
       dateLabel.text = post?.createdDate
       numberOfCommentsLabel.text = "\(post?.numberOfComments ?? 0) comments"
       if post?.thumbnailUrl != nil {
@@ -41,6 +41,10 @@ class RedditPostCell: UICollectionViewCell {
 
   static func cellNib() -> UINib {
     return UINib(nibName: "RedditPostCell", bundle: Bundle.main)
+  }
+
+  static func reuseIdentifier() -> String {
+    return "redditpost"
   }
 
   // MARK: - Lifecycle methods

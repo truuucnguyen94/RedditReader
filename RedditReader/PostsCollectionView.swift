@@ -38,7 +38,7 @@ class PostsCollectionView: UICollectionView {
     
     dataSource = self
     delegate = self
-    self.register(RedditPostCell.cellNib(), forCellWithReuseIdentifier: "redditpost")
+    self.register(RedditPostCell.cellNib(), forCellWithReuseIdentifier: RedditPostCell.reuseIdentifier())
   }
 }
 
@@ -50,7 +50,7 @@ extension PostsCollectionView: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let post = posts[indexPath.row]
     
-    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "redditpost", for: indexPath) as? RedditPostCell {
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RedditPostCell.reuseIdentifier(), for: indexPath) as? RedditPostCell {
       cell.post = post
       return cell
     }

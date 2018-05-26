@@ -21,6 +21,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-4N-fn9">
                         <rect key="frame" x="2" y="2.5" width="180" height="180"/>
+                        <color key="backgroundColor" red="0.57822414340101524" green="0.57822414340101524" blue="0.57822414340101524" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="180" id="tOr-52-iLH"/>
                         </constraints>

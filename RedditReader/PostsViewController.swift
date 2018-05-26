@@ -10,6 +10,7 @@ import UIKit
 
 class PostsViewController: UIViewController {
   let jsonLoader = JSONLoader()
+  var currentPage = 0
 
   @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var nextPageButton: UIButton!
@@ -18,37 +19,48 @@ class PostsViewController: UIViewController {
 
   @IBAction func loadNextPage() {
     displayLoading()
-    // Check if we currently have the next 25 posts, if not then load and display
-    hideLoading()
+    currentPage += 1
+    jsonLoader.loadPosts(currentPage)
+    previousPageButton.isEnabled = true
   }
 
   @IBAction func loadPreviousPage() {
+    guard currentPage > 0 else { return }
     displayLoading()
-    // Use previous 25 posts and reload collection view
-    hideLoading()
+    currentPage -= 1
+    jsonLoader.loadPosts(currentPage)
+    previousPageButton.isEnabled = currentPage > 0
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     jsonLoader.delegate = self
+    displayLoading()
     jsonLoader.loadPosts()
   }
 
   private func displayLoading() {
-    loadingActivityIndicator.isHidden = false
-    loadingActivityIndicator.startAnimating()
+    DispatchQueue.main.async { [weak self] in
+      self?.loadingActivityIndicator.isHidden = false
+      self?.loadingActivityIndicator.startAnimating()
+    }
   }
 
   private func hideLoading() {
-    loadingActivityIndicator.isHidden = true
-    loadingActivityIndicator.stopAnimating()
+    DispatchQueue.main.async { [weak self] in
+      self?.loadingActivityIndicator.isHidden = true
+      self?.loadingActivityIndicator.stopAnimating()
+    }
   }
 }
 
 extension PostsViewController: JSONLoaderDelegate {
-  func finishedLoading(with error: Error) {}
+  func finishedLoading(with error: Error) {
+    hideLoading()
+  }
 
   func finishedLoadingPosts(_ posts: [RedditPost]) {
+    hideLoading()
     postsCollectionView.posts = posts
   }
 }

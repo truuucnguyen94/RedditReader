@@ -39,7 +39,7 @@
                                     <action selector="loadNextPage" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jxm-mx-K6S"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ye-Rr-OK7">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ye-Rr-OK7">
                                 <rect key="frame" x="98" y="621" width="59" height="30"/>
                                 <state key="normal" title="Previous"/>
                                 <connections>
