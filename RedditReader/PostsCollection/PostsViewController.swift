@@ -9,15 +9,18 @@
 import UIKit
 
 class PostsViewController: UIViewController {
-  let jsonLoader = JSONLoader()
-  var currentPage = 0
+  // MARK: - Private Properties
+  fileprivate let jsonLoader = JSONLoader()
+  fileprivate var currentPage = 0
 
-  @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
-  @IBOutlet weak var nextPageButton: UIButton!
-  @IBOutlet weak var previousPageButton: UIButton!
-  @IBOutlet weak var postsCollectionView: PostsCollectionView!
-  @IBOutlet weak var currentPageLabel: UILabel!
+  // MARK: - IBOutlet Properties
+  @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
+  @IBOutlet private weak var nextPageButton: UIButton!
+  @IBOutlet private weak var previousPageButton: UIButton!
+  @IBOutlet private weak var postsCollectionView: PostsCollectionView!
+  @IBOutlet private weak var currentPageLabel: UILabel!
 
+  // MARK: - IBAction Methods
   @IBAction func loadNextPage() {
     displayLoading()
     currentPage += 1
@@ -33,6 +36,7 @@ class PostsViewController: UIViewController {
     previousPageButton.isEnabled = currentPage > 0
   }
 
+  // MARK: - ViewController Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     jsonLoader.delegate = self
@@ -44,6 +48,7 @@ class PostsViewController: UIViewController {
     jsonLoader.loadPosts(currentPage)
   }
 
+  // MARK: - Private methods
   private func displayLoading() {
     DispatchQueue.main.async { [weak self] in
       self?.loadingActivityIndicator.isHidden = false
@@ -62,6 +67,7 @@ class PostsViewController: UIViewController {
   }
 }
 
+// MARK: - JSONLoaderDelegate extension
 extension PostsViewController: JSONLoaderDelegate {
   func finishedLoading(with error: Error) {
     hideLoading()

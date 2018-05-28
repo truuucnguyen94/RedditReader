@@ -8,19 +8,24 @@
 
 import Foundation
 
+/// Errors that can be thrown from the JSONLoader
 enum JSONLoaderError: Error {
   case cannotComposeUrl
   case requestError
 }
 
+/// Delegate protocol to handle loading completions
 protocol JSONLoaderDelegate: class {
   func finishedLoadingPosts(_ posts: [RedditPost])
   func finishedLoading(with error: Error)
 }
 
+/// Typealias for JSONPayload
 public typealias JSONPayload = [String: Any]
 
+/// JSONLoader class that keeps track of pagination / loading next pages given a page index
 class JSONLoader {
+  /// Keys for parsing the JSONPayload
   struct Keys {
     static let kind = "kind"
     static let listingKind = "Listing"

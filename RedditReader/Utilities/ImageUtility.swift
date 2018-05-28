@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// Utility class that loads UIImage from a URL directly into the desired UIImageView
 class ImageUtility {
   static let shared = ImageUtility()
   let session = URLSession(configuration: .default)

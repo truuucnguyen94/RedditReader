@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct RedditPostKeys {
+fileprivate struct RedditPostKeys {
   static let title = "title"
   static let author = "author"
   static let thumbnailUrl = "thumbnail"

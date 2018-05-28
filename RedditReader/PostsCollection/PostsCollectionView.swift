@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class PostsCollectionView: UICollectionView {
+  // MARK: - Public Properties
   var posts: [RedditPost] = [] {
     didSet {
       DispatchQueue.main.async { [weak self] in
@@ -18,6 +19,7 @@ class PostsCollectionView: UICollectionView {
     }
   }
 
+  // MARK: - Initializers
   init() {
     let flowLayout = UICollectionViewFlowLayout()
     flowLayout.scrollDirection = .vertical
