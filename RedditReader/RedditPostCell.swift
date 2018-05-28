@@ -16,7 +16,7 @@ class RedditPostCell: UICollectionViewCell {
   @IBOutlet private weak var dateLabel: UILabel!
   @IBOutlet private weak var numberOfCommentsLabel: UILabel!
   @IBOutlet private weak var thumbnailImageViewWidthConstraint: NSLayoutConstraint!
-
+  @IBOutlet private weak var stackViewLeadingConstraint: NSLayoutConstraint!
   @IBOutlet private weak var thumbnailImageView: UIImageView! {
     didSet {
       thumbnailImageView.contentMode = .scaleToFill
@@ -30,12 +30,7 @@ class RedditPostCell: UICollectionViewCell {
       authorLabel.text = "By \"\(post?.author ?? "anonymous")\""
       dateLabel.text = post?.createdDate
       numberOfCommentsLabel.text = "\(post?.numberOfComments ?? 0) comments"
-      if post?.thumbnailUrl != nil {
-        loadImage()
-        thumbnailImageViewWidthConstraint.constant = 180
-      } else {
-        thumbnailImageViewWidthConstraint.constant = 0
-      }
+      setupConstraints(hidingImage: post?.thumbnailUrl == nil)
     }
   }
 
@@ -61,5 +56,16 @@ class RedditPostCell: UICollectionViewCell {
   private func loadImage() {
     guard let post = post else { return }
     ImageUtility.shared.loadImage(from: post, to: thumbnailImageView)
+  }
+
+  private func setupConstraints(hidingImage: Bool) {
+    if hidingImage {
+      thumbnailImageViewWidthConstraint.constant = 0
+      stackViewLeadingConstraint.constant = 0
+    } else {
+      loadImage()
+      thumbnailImageViewWidthConstraint.constant = 180
+      stackViewLeadingConstraint.constant = 10
+    }
   }
 }

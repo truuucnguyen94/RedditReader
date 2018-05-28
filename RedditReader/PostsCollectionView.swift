@@ -66,7 +66,9 @@ extension PostsCollectionView: UICollectionViewDataSource {
 
 extension PostsCollectionView: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let post = posts[indexPath.row]
     let width = frame.size.width - 10 - 10
-    return CGSize(width: width, height: 180)
+    let height = CGFloat(post.thumbnailUrl != nil ? 180 : 150)
+    return CGSize(width: width, height: height)
   }
 }

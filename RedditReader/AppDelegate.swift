@@ -12,10 +12,33 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  let lastSavedStateTime = "SavedStateDate"
+  var lastSavedDate: NSDate?
+  let halfHourInSeconds: Double = 30 * 60
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     return true
+  }
+
+  func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+    if let lastSavedDate = lastSavedDate {
+      coder.encode(lastSavedDate, forKey: lastSavedStateTime)
+    } else {
+      coder.encode(NSDate(), forKey: lastSavedStateTime)
+    }
+    return true
+  }
+
+  func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+    // Only restoring old application state if within half an hour of last loading top posts
+    // Similar to Time To Live (TTL) concept with user data
+    guard let lastSavedDate = coder.decodeObject(forKey: lastSavedStateTime) as? NSDate else { return false }
+    let shouldRestoreAppState = abs(lastSavedDate.timeIntervalSinceNow) < halfHourInSeconds
+    if shouldRestoreAppState {
+      self.lastSavedDate = lastSavedDate
+    }
+    return shouldRestoreAppState
   }
 
   func applicationWillResignActive(_ application: UIApplication) {
@@ -39,7 +62,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
-
-
 }
 
