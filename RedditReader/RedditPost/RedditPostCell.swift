@@ -64,7 +64,7 @@ class RedditPostCell: UICollectionViewCell {
       stackViewLeadingConstraint.constant = 0
     } else {
       loadImage()
-      thumbnailImageViewWidthConstraint.constant = 180
+      thumbnailImageViewWidthConstraint.constant = 160
       stackViewLeadingConstraint.constant = 10
     }
   }

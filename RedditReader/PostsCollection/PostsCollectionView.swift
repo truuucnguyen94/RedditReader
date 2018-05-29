@@ -15,6 +15,9 @@ class PostsCollectionView: UICollectionView {
     didSet {
       DispatchQueue.main.async { [weak self] in
         self?.reloadData()
+        self?.scrollToItem(at: IndexPath(row: 0, section: 0),
+                           at: .top,
+                           animated: true)
       }
     }
   }
@@ -70,7 +73,7 @@ extension PostsCollectionView: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let post = posts[indexPath.row]
     let width = frame.size.width - 10 - 10
-    let height = CGFloat(post.thumbnailUrl != nil ? 180 : 150)
+    let height = CGFloat(post.thumbnailUrl != nil ? 170 : 150)
     return CGSize(width: width, height: height)
   }
 }
