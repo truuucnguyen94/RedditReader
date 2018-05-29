@@ -52,10 +52,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, there has been an error loading." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ag1-NL-ciX">
+                                <rect key="frame" x="40.5" y="323" width="293" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.5607843137254902" green="0.66274509803921566" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FTg-t7-h97" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="41E-DC-MjE"/>
+                            <constraint firstItem="ag1-NL-ciX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6S6-B4-P5w"/>
                             <constraint firstItem="FTg-t7-h97" firstAttribute="top" secondItem="rHd-9L-eaX" secondAttribute="bottom" constant="10" id="8bT-IN-lcV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FTg-t7-h97" secondAttribute="bottom" constant="21" id="CcI-qE-Rbf"/>
                             <constraint firstItem="06G-1F-X0A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JzM-cM-aQD"/>
@@ -65,6 +72,7 @@
                             <constraint firstItem="rHd-9L-eaX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Whx-uG-i22"/>
                             <constraint firstItem="rHd-9L-eaX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XVK-gQ-5dz"/>
                             <constraint firstItem="XNB-6n-zV6" firstAttribute="leading" secondItem="FTg-t7-h97" secondAttribute="trailing" constant="20" id="csU-iI-5HS"/>
+                            <constraint firstItem="ag1-NL-ciX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kfK-yr-JdB"/>
                             <constraint firstItem="rHd-9L-eaX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qib-yk-Rzj"/>
                             <constraint firstItem="rHd-9L-eaX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wcA-fM-eix"/>
                             <constraint firstItem="FTg-t7-h97" firstAttribute="leading" secondItem="1ye-Rr-OK7" secondAttribute="trailing" constant="20" id="yFT-Ws-GHU"/>
@@ -73,6 +81,7 @@
                     </view>
                     <connections>
                         <outlet property="currentPageLabel" destination="06G-1F-X0A" id="iDe-mf-QGM"/>
+                        <outlet property="errorLabel" destination="ag1-NL-ciX" id="Pzk-Gi-0Ps"/>
                         <outlet property="loadingActivityIndicator" destination="FTg-t7-h97" id="cP1-Li-7R6"/>
                         <outlet property="nextPageButton" destination="XNB-6n-zV6" id="epN-dN-pSQ"/>
                         <outlet property="postsCollectionView" destination="rHd-9L-eaX" id="1Hm-WO-5Rk"/>

@@ -19,6 +19,7 @@ class PostsViewController: UIViewController {
   @IBOutlet private weak var previousPageButton: UIButton!
   @IBOutlet private weak var postsCollectionView: PostsCollectionView!
   @IBOutlet private weak var currentPageLabel: UILabel!
+  @IBOutlet private weak var errorLabel: UILabel!
 
   // MARK: - IBAction Methods
   @IBAction func loadNextPage() {
@@ -65,12 +66,23 @@ class PostsViewController: UIViewController {
       self?.currentPageLabel.isHidden = false
     }
   }
+
+  private func displayErrorState() {
+    DispatchQueue.main.async { [weak self] in
+      guard let strongSelf = self else { return }
+      strongSelf.errorLabel.isHidden = false
+      strongSelf.postsCollectionView.isHidden = true
+      strongSelf.nextPageButton.isEnabled = false
+      strongSelf.previousPageButton.isEnabled = false
+    }
+  }
 }
 
 // MARK: - JSONLoaderDelegate extension
 extension PostsViewController: JSONLoaderDelegate {
   func finishedLoading(with error: Error) {
     hideLoading()
+    displayErrorState()
   }
 
   func finishedLoadingPosts(_ posts: [RedditPost]) {
